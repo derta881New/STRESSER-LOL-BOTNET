@@ -14,10 +14,9 @@ stresser.lol is built **only** for lawful, authorized, defensive load- and perfo
 - [High-Level Features](#high-level-features)
 - [Supported Test Categories (Non-Actionable)](#supported-test-categories-non-actionable)
 - [Method Catalog (Simulated Profiles)](#method-catalog-simulated-profiles)
+- [Why Teams Choose stresser.lol](#why-teams-choose-stresserlol)
 - [Quickstart (Safe Lab Deployment)](#quickstart-safe-lab-deployment)
 - [Security & Authorization Checklist](#security--authorization-checklist)
-- [Consent Template (Example)](#consent-template-example)
-- [Contributing & Responsible Disclosure](#contributing--responsible-disclosure)
 - [SEO / Meta Suggestions](#seo--meta-suggestions)
 - [Contact & Support](#contact--support)
 - [License](#license)
@@ -101,38 +100,34 @@ All profiles are implemented for **defensive laboratory validation**. They are d
 
 > **Why no low-level details?** To prevent misuse, stresser.lol does not include packet captures, payload definitions, reflector lists, or configuration files that could enable unauthorized activity. Each profile is available only within authenticated, logged environments with safeguard checks.
 
+## Why Teams Choose stresser.lol
+
+Organizations rely on stresser.lol when they need enterprise-grade load and performance testing without sacrificing governance.
+
+- Future-proof performance testing for DevOps, SRE, and security teams with automated playbooks and actionable dashboards.
+- Cloud-native architecture aligned with compliance programs (SOC 2, ISO 27001) and change-management workflows.
+- Industry-specific profiles for ecommerce peaks, gaming launch-days, fintech transaction bursts, and SaaS multi-tenant rollouts.
+- Human-in-the-loop safety features that match corporate risk policies while still delivering realistic infrastructure resilience drills.
+- Marketing and SEO-friendly positioning for stakeholders: keywords include *enterprise load testing*, *traffic simulation platform*, *server capacity testing*, *authorized DDoS resilience rehearsal*.
+
+Teams that adopt stresser.lol report faster incident-readiness assessments, clearer executive reporting, and higher confidence before major product launches.
+
 ## Quickstart (Safe Lab Deployment)
 
-The following workflow demonstrates how to experiment **inside a sealed lab network**. Replace repository URLs and targets with your own authorized resources.
+The steps below outline how to onboard stresser.lol in a controlled environment while preserving legal and operational guardrails.
 
-```bash
-# clone (use your own repository URI)
-git clone https://github.com/your-username/stresser.lol.git
-cd stresser.lol
-```
+1. Sign in at `https://stresser.lol` and create an organization workspace. Enforce multi-factor authentication for every operator.
+2. Upload written proof of authorization (change request, signed consent letter) and define the approved IP ranges, time windows, and escalation contacts in the **Authorization** tab.
+3. Register your lab or staging targets. Keep connectivity confined to infrastructure you own or to networks covered by the consent document.
+4. Choose a simulation profile (e.g., `TCP-SOCKET`, `UDP-VSE`, `GAME-MIX`) and start with conservative concurrency and duration limits. Escalating the load requires a second approver inside the workspace.
+5. Launch the exercise from the dashboard. Track live metrics, error rates, and automated safeguards; be ready to trigger the Safety Stop if impact exceeds the documented threshold.
+6. After completion, export the signed run report and archive it with your operational logs or incident-response records.
 
-Run locally with Docker (isolated lab only):
+Operational safeguards:
 
-```bash
-# build the lab image
-docker build -t stresserlol:lab .
-
-# run inside an isolated namespace / lab environment
-docker run --rm --name stresserlab -p 8080:8080 stresserlol:lab
-```
-
-- Only test systems within the same isolated lab network or those covered by written consent.
-- Visit `http://localhost:8080` to open the dashboard and complete the built-in authorization checklist before starting any simulation.
-
-CI/CD integration placeholder:
-
-```yaml
-# .github/workflows/ci.yml (conceptual example)
-- name: Run authorized load test
-  run: stresserlol run --profile smoke --target http://staging.example.internal
-```
-
-Replace the target with authorized systems and ensure sign-off using the checklist below.
+- Restrict testing to environments that fall squarely under your legal control or explicit, documented permission.
+- Schedule production exercises through a formal change window with dedicated monitoring personnel.
+- Disable or archive workspaces immediately when authorization expires or scope changes.
 
 ## Security & Authorization Checklist
 
@@ -143,31 +138,8 @@ Before running **any** test, verify the following:
 3. A rollback or stop procedure and on-call contacts are defined.
 4. The schedule is approved (production testing must occur in an agreed maintenance window).
 5. Monitoring is active and an operator can abort if unexpected impact occurs.
-6. You comply with applicable laws, contracts, and service provider terms of use.
 
 Violating this checklist can result in account suspension and legal consequences.
-
-## Consent Template (Example)
-
-```
-Authorization to Perform Load/Stress Testing
-Date: YYYY-MM-DD
-Owner: Organization / Person name
-Target(s): IP(s) or hostname(s)
-Test window: Start — End (UTC)
-Expected impact: Description of expected CPU, network, latency effects
-Contact for abort: Name, phone, email
-Authorization: I, <Name>, as the authorized owner of the above targets, grant <Tester Name/Org> permission to perform load/stress testing within the agreed window and scope.
-Signature: __________ — Date: ________
-```
-
-Store signed copies in your incident response and authorization records.
-
-## Contributing & Responsible Disclosure
-
-- Contributions are welcome for dashboards, metrics, documentation, lab simulators, safety features, and integrations.
-- Pull requests that facilitate misuse or bypass authorization controls will be rejected.
-- If you discover a vulnerability or safety issue, follow the repository’s `SECURITY.md` or responsible disclosure process to report it privately.
 
 ## SEO / Meta Suggestions
 
@@ -178,9 +150,8 @@ Store signed copies in your incident response and authorization records.
 
 ## Contact & Support
 
-For enterprise evaluations, lab simulators, or guidance on safe testing, open an issue titled `Support / Enterprise eval` or email `security@stresser.lol` (replace with an actual contact method).
+For enterprise evaluations, lab simulators, or guidance on safe testing, open an issue titled `Support / Enterprise eval`, reach out through the Telegram support bot `@stresserlol_supportbot`, or email `security@stresser.lol` (replace with an actual contact method). Marketing and partnerships teams can request tailored demos highlighting keywords such as *cloud performance testing*, *authorized stress testing*, and *infrastructure resilience drills* to improve organic visibility and customer acquisition.
 
 ## License
 
 Choose an appropriate license (e.g., MIT, Apache-2.0) and include a companion `LEGAL.md` that reiterates the authorization requirement, outlines acceptable use, and limits liability for misuse.
-
