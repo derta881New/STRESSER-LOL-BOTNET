@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark" style="color-scheme: dark;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>stresser.lol - Documentation</title>
+    <meta name="description" content="Official documentation for stresser.lol - Professional load and stress testing platform for authorized infrastructure testing.">
+    <link rel="icon" href="/favicon.png" type="image/x-icon" sizes="256x256">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --emerald-primary: #10b981;
+            --emerald-light: #34d399;
+            --emerald-dark: #047857;
+            --emerald-glow: rgba(16, 185, 129, 0.3);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(16, 185, 129, 0.2);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.12), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(52, 211, 153, 0.08), transparent 50%),
+                        radial-gradient(circle at 50% 20%, rgba(4, 120, 87, 0.1), transparent 40%),
+                        #000000;
+            z-index: -2;
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -1;
+            animation: gridMove 25s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+            padding: 14px 28px;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--emerald-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            filter: drop-shadow(0 0 10px var(--emerald-glow));
+        }
+
+        .login-btn {
+            padding: 12px 28px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-dark));
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.6);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .docs-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .docs-header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, var(--emerald-light), #ffffff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .docs-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .docs-content {
+            padding: 40px;
+            border-radius: 24px;
+            line-height: 1.8;
+        }
+
+        .docs-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--emerald-light);
+            margin: 40px 0 20px 0;
+            text-shadow: 0 0 20px var(--emerald-glow);
+        }
+
+        .docs-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .docs-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--emerald-light);
+            margin: 30px 0 15px 0;
+        }
+
+        .docs-content p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+        }
+
+        .docs-content ul, .docs-content ol {
+            margin: 20px 0 20px 40px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .docs-content li {
+            margin: 10px 0;
+        }
+
+        .docs-content code {
+            background: rgba(16, 185, 129, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--emerald-light);
+            font-size: 0.9em;
+        }
+
+        .docs-content pre {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .docs-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .alert {
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid var(--emerald-primary);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .alert strong {
+            color: var(--emerald-light);
+            font-weight: 700;
+        }
+
+        .method-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-dark));
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .footer {
+            width: 100%;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(16, 185, 129, 0.15);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .docs-header h1 {
+                font-size: 2.5rem;
+            }
+            .docs-content {
+                padding: 24px;
+            }
+            .docs-content h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-gradient"></div>
+    <div class="grid-overlay"></div>
+
+    <nav class="navbar glass">
+        <a href="/" class="logo">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+            </svg>
+            stresser.lol
+        </a>
+        <a href="./login" class="login-btn">Login</a>
+    </nav>
+
+    <div class="container">
+        <div class="docs-header">
+            <h1>⚡ Documentation</h1>
+            <p>Authorized Load & Performance Testing — Ethical Use Only</p>
+        </div>
+
+        <div class="docs-content glass">
+            <h2>About stresser.lol</h2>
+            <p>stresser.lol is a professional load- and stress-testing platform designed to help developers, DevOps, and security teams validate the performance, reliability, and resilience of their own servers and services. It focuses on repeatable, auditable tests and clear reporting so teams can discover bottlenecks and improve capacity planning.</p>
+
+            <div class="alert">
+                <strong>IMPORTANT — Legal & Ethical Notice:</strong> stresser.lol is built only for lawful, authorized, defensive load- and performance-testing of infrastructure that you own or where you have explicit, written permission to test. Unauthorized testing against third-party systems is illegal and strictly forbidden.
+            </div>
+
+            <h2>High-Level Features</h2>
+            <ul>
+                <li>Realistic traffic simulation for common protocol families (HTTP, TCP, UDP) — for authorized testing only</li>
+                <li>Configurable load profiles (concurrency, rate, duration) to reproduce realistic stress scenarios</li>
+                <li>Real-time metrics, dashboards, and downloadable reports (latency percentiles, error rates, throughput)</li>
+                <li>Secure authorization workflows and audit trails (who initiated, when, scope)</li>
+                <li>Docker-friendly deployment and examples for isolated lab environments</li>
+                <li>REST API and CLI for CI/CD integration and automated test pipelines</li>
+                <li>Role-based access controls and safety limits to reduce accidental misuse</li>
+            </ul>
+
+            <h2>Supported Test Categories</h2>
+            <p>The following categories are described at a high level to help authorized operators understand what the platform can simulate:</p>
+
+            <h3>HTTP / Application-layer load</h3>
+            <p>Simulates realistic HTTP request patterns to measure throughput, latency, and error handling for web applications and APIs.</p>
+
+            <h3>Connection and transport-level tests (TCP)</h3>
+            <p>Exercises server behavior under high numbers of concurrent connections and connection lifecycle changes to validate resource limits.</p>
+
+            <h3>Packet-rate and throughput tests (UDP)</h3>
+            <p>Measures how infrastructure handles high packet rates and raw throughput scenarios; useful for validating network stacks and packet-processing capacity.</p>
+
+            <h3>Amplification-style scenarios</h3>
+            <p>Provides controlled amplification simulations using private or emulated reflectors to validate defensive controls (rate limiting, ingress filtering) in isolated, authorized environments.</p>
+
+            <h3>Game-server / protocol emulation</h3>
+            <p>Generates synthetic traffic patterns that mimic typical game-server workloads or custom UDP-based services for capacity testing in lab environments.</p>
+
+            <h2>Method Catalog</h2>
+
+            <h3>Special Methods</h3>
+            <ul>
+                <li><strong>DISCORD</strong> <span class="method-tag">Premium</span> — Static payload simulator targeting Discord VoIP-style infrastructure for resilience validation</li>
+                <li><strong>TCP-OVH</strong> <span class="method-tag">Premium</span> — TCP profile mirroring typical OVH hosting traffic to test edge firewall policies</li>
+                <li><strong>UDP-OVH</strong> <span class="method-tag">Premium</span> — UDP profile aligned with OVH mitigation runbooks to validate filtering efficacy</li>
+            </ul>
+
+            <h3>Game Methods</h3>
+            <ul>
+                <li><strong>UDP-RAKNET</strong> <span class="method-tag">Premium</span> — RakNet-style UDP query flood simulator for private game labs</li>
+                <li><strong>UDP-GAME</strong> <span class="method-tag">Premium</span> — Generic game-oriented UDP load profile</li>
+                <li><strong>GAME-MIX</strong> <span class="method-tag">Premium</span> — Mixed query workload combining multiple game service patterns</li>
+                <li><strong>R6-FREEZE</strong> <span class="method-tag">Premium</span> — High PPS UDP profile emulating Rainbow Six Siege stress cases</li>
+                <li><strong>R6-CRASH</strong> <span class="method-tag">Premium</span> — High PPS crash-focused UDP profile for controlled failure testing</li>
+                <li><strong>FIVEM</strong> — Spoofed UDP emulation of FiveM-style workloads for staging environments</li>
+            </ul>
+
+            <h3>UDP Protocol Profiles</h3>
+            <ul>
+                <li><strong>UDP-VSE</strong> — Valve Source Engine-style UDP latency/throughput simulator</li>
+                <li><strong>UDP-BYPASS</strong> — UDP traffic with defensive bypass patterns for blue-team rehearsal</li>
+                <li><strong>UDP-PPS</strong> — High packets-per-second UDP throughput profile</li>
+                <li><strong>UDP-RAW</strong> <span class="method-tag">Premium</span> — Raw UDP payload simulator for edge appliance validation</li>
+            </ul>
+
+            <h3>TCP Protocol Profiles</h3>
+            <ul>
+                <li><strong>TCP-ACK</strong> — ACK-flood style simulator for TCP stack validation</li>
+                <li><strong>TCP-SYN</strong> — SYN-flood traffic pattern for controlled lab stress</li>
+                <li><strong>TCP-TFO</strong> — TCP Fast Open request simulator for modern stack coverage</li>
+                <li><strong>TCP-BYPASS</strong> <span class="method-tag">Premium</span> — TCP load with defensive bypass patterns for advanced mitigation testing</li>
+                <li><strong>TCP-WEB</strong> <span class="method-tag">Premium</span> — HTTP-like TCP workload for web-tier drills</li>
+                <li><strong>TCP-SOCKET</strong> <span class="method-tag">Premium</span> — High-rate connection churn simulator to test socket exhaustion handling</li>
+            </ul>
+
+            <h3>Amplification & Reflection Scenarios</h3>
+            <ul>
+                <li><strong>WSD</strong> — Web Services Discovery amplification simulator</li>
+                <li><strong>ARD</strong> — Apple Remote Desktop amplification simulator</li>
+                <li><strong>COAP</strong> <span class="method-tag">Premium</span> — Constrained Application Protocol amplification profile</li>
+                <li><strong>CLDAP</strong> <span class="method-tag">Premium</span> — Connectionless LDAP amplification profile</li>
+                <li><strong>SNMP</strong> <span class="method-tag">Premium</span> — UDP-based SNMP amplification profile</li>
+                <li><strong>DNS</strong> — DNS amplification simulator</li>
+                <li><strong>SSDP</strong> <span class="method-tag">Premium</span> — Simple Service Discovery Protocol amplification profile</li>
+                <li><strong>NTP</strong> — Network Time Protocol amplification profile</li>
+                <li><strong>SADP</strong> <span class="method-tag">Premium</span> — Siemens Address Discovery Protocol amplification profile</li>
+                <li><strong>STUN</strong> <span class="method-tag">Premium</span> — Session Traversal Utilities for NAT amplification profile</li>
+            </ul>
+
+            <h2>Quickstart (Safe Lab Deployment)</h2>
+            <ol>
+                <li>Sign in at <a href="https://stresser.lol" style="color: var(--emerald-light);">https://stresser.lol</a> and create an organization workspace. Enforce multi-factor authentication for every operator.</li>
+                <li>Upload written proof of authorization (change request, signed consent letter) and define the approved IP ranges, time windows, and escalation contacts in the Authorization tab.</li>
+                <li>Register your lab or staging targets. Keep connectivity confined to infrastructure you own or to networks covered by the consent document.</li>
+                <li>Choose a simulation profile (e.g., TCP-SOCKET, UDP-VSE, GAME-MIX) and start with conservative concurrency and duration limits.</li>
+                <li>Launch the exercise from the dashboard. Track live metrics, error rates, and automated safeguards; be ready to trigger the Safety Stop if impact exceeds the documented threshold.</li>
+                <li>After completion, export the signed run report and archive it with your operational logs or incident-response records.</li>
+            </ol>
+
+            <h2>Security & Authorization Checklist</h2>
+            <p>Before running any test, verify the following:</p>
+            <ul>
+                <li>✅ You own the target environment or have explicit, written authorization from the owner (retain documentation)</li>
+                <li>✅ The test scope is documented (IP ranges, duration, expected impact)</li>
+                <li>✅ A rollback or stop procedure and on-call contacts are defined</li>
+                <li>✅ The schedule is approved (production testing must occur in an agreed maintenance window)</li>
+                <li>✅ Monitoring is active and an operator can abort if unexpected impact occurs</li>
+            </ul>
+
+            <div class="alert">
+                <strong>Warning:</strong> Violating this checklist can result in account suspension and legal consequences.
+            </div>
+
+            <h2>Why Teams Choose stresser.lol</h2>
+            <ul>
+                <li>Future-proof performance testing for DevOps, SRE, and security teams with automated playbooks and actionable dashboards</li>
+                <li>Cloud-native architecture aligned with compliance programs (SOC 2, ISO 27001) and change-management workflows</li>
+                <li>Industry-specific profiles for ecommerce peaks, gaming launch-days, fintech transaction bursts, and SaaS multi-tenant rollouts</li>
+                <li>Human-in-the-loop safety features that match corporate risk policies while still delivering realistic infrastructure resilience drills</li>
+            </ul>
+
+            <h2>Contact & Support</h2>
+            <p>For enterprise evaluations, lab simulators, or guidance on safe testing, reach out through the Telegram support bot <a href="https://t.me/stresserlol_supportbot" style="color: var(--emerald-light);">@stresserlol_supportbot</a> or email <code>security@stresser.lol</code>.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 stresser.lol. All rights reserved. For authorized testing only.</p>
+    </footer>
+</body>
+</html>
